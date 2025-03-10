@@ -1,0 +1,27 @@
+name: Run AI Project
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  run-models:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Jalankan semua model
+        run: python run_all_models.py
